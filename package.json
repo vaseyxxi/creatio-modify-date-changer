@@ -2,7 +2,13 @@
 	"name": "creatio-modify-date-changer",
 	"displayName": "Creatio modify date changer",
 	"description": "Sets ModifiedOnUTC of descriptor.json when related file saved in VS Code.",
-	"version": "0.0.1",
+	"icon": "images/icon.png",
+	"galleryBanner": {
+		"color": "#1e1e1e",
+		"theme": "dark"
+	},
+	"version": "0.0.2",
+	"publisher": "vasey",
 	"engines": {
 		"vscode": "^1.52.0"
 	},
@@ -10,15 +16,11 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:creatio-modify-date-changer.helloWorld"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
-			{
-				"command": "creatio-modify-date-changer.helloWorld",
-				"title": "Hello World"
-			}
 		]
 	},
 	"scripts": {

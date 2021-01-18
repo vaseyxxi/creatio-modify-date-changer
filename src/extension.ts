@@ -1,27 +1,48 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
+	var extension = new CreatioModifyDateChanger(context);
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "creatio-modify-date-changer" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('creatio-modify-date-changer.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Creatio modify date changer!');
+	vscode.workspace.onDidSaveTextDocument((document: vscode.TextDocument) => {
+		extension.updateModifyDate(document);
 	});
-
-	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
+
+class CreatioModifyDateChanger {
+	private _context: vscode.ExtensionContext;
+
+	constructor(context: vscode.ExtensionContext) {
+		this._context = context;
+	}
+
+	public updateModifyDate(document: vscode.TextDocument) : void {
+		var dirPath = path.dirname(document.fileName);
+		var descriptorPath = path.join(dirPath, 'descriptor.json');
+		try {
+			if (fs.existsSync(descriptorPath)) {
+				let rawData = fs.readFileSync(descriptorPath, "utf8");
+				var descriptorNew = rawData.replace(/Date\(([0-9])+\)/, this.getUtcDate());
+				fs.writeFileSync(descriptorPath, descriptorNew);
+			}
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
+	private getUtcDate() : string {
+		var date = new Date();
+		var utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+		var unixDate = Math.floor((utcDate).getTime() / 1000);
+		return 'Date(' + unixDate + '000)';
+	}
+}
