@@ -3,6 +3,13 @@
 	"displayName": "Creatio modify date changer",
 	"description": "Sets ModifiedOnUTC of descriptor.json when related file saved in VS Code.",
 	"icon": "images/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vaseyxxi/creatio-modify-date-changer"
+	},
+	"bugs": {
+		"url": "https://github.com/vaseyxxi/creatio-modify-date-changer/issues"
+	},
 	"galleryBanner": {
 		"color": "#1e1e1e",
 		"theme": "dark"

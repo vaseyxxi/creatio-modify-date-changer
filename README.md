@@ -17,3 +17,7 @@ First alpha.
 ### 0.0.2
 
 Icon added.
+
+### 0.0.3
+
+Repo links added.
