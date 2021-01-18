@@ -1,4 +1,4 @@
-# creatio-modify-date-changer README
+# README
 
 Creatio modify date changer.
 

@@ -14,7 +14,7 @@
 		"color": "#1e1e1e",
 		"theme": "dark"
 	},
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "vasey",
 	"engines": {
 		"vscode": "^1.52.0"
