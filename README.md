@@ -21,3 +21,7 @@ Icon added.
 ### 0.0.3
 
 Repo links added.
+
+### 0.0.4
+
+DateTime calculation fixed to represent correct UTC time.

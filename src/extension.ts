@@ -41,8 +41,7 @@ class CreatioModifyDateChanger {
 
 	private getUtcDate() : string {
 		var date = new Date();
-		var utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-		var unixDate = Math.floor((utcDate).getTime() / 1000);
+		var unixDate = Math.floor((date).getTime() / 1000);
 		return 'Date(' + unixDate + '000)';
 	}
 }
